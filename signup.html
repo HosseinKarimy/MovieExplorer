@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ثبت نام کاربر</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/signup.css">
+</head>
+<body>
+    <!-- Registration Form -->
+    <section class="registration-section">
+        <h2>ثبت نام</h2>
+        <form class="registration-form">
+            <!-- Username Field -->
+            <label for="username">نام کاربری:</label>
+            <input type="text" id="username" name="username" required>
+
+            <!-- Email Field -->
+            <label for="email">ایمیل:</label>
+            <input type="email" id="email" name="email" required>
+
+            <!-- Password Field -->
+            <label for="password">رمز عبور:</label>
+            <input type="password" id="password" name="password" required>
+
+            <!-- Genre Selection -->
+            <label>ژانرهای مورد علاقه:</label>
+            <div class="genre-selection">
+                <input type="checkbox" id="action" name="genres" value="action">
+                <label for="action">اکشن</label>
+            
+                <input type="checkbox" id="comedy" name="genres" value="comedy">
+                <label for="comedy">کمدی</label>
+            
+                <input type="checkbox" id="drama" name="genres" value="drama">
+                <label for="drama">درام</label>
+            
+                <input type="checkbox" id="horror" name="genres" value="horror">
+                <label for="horror">ترسناک</label>
+            
+                <input type="checkbox" id="romance" name="genres" value="romance">
+                <label for="romance">عاشقانه</label>
+            
+                <input type="checkbox" id="sci-fi" name="genres" value="sci-fi">
+                <label for="sci-fi">علمی تخیلی</label>
+            
+                <input type="checkbox" id="thriller" name="genres" value="thriller">
+                <label for="thriller">هیجان انگیز</label>
+            </div>            
+
+            <!-- Submit Button -->
+            <button type="submit">ثبت نام</button>
+        </form>
+    </section>
+</body>
+</html>
