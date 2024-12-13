@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Explorer - Artist Page</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/artist.css">
+</head>
+
+<body>
+    <!-- navbar -->
+    <div id="navbar"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading navbar:', error));
+    </script>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Artist Details Section -->
+        <section class="details">
+            <div class="details-information">
+                <h2>ال پاچینو (Al Pacino)</h2>
+                <div class="follow-button">
+                    <button id="followToggle" class="follow-icon">
+                        <span>⭐</span> دنبال کردن
+                    </button>
+                </div>
+                <p><strong>تاریخ تولد:</strong> ۲۵ آوریل ۱۹۴۰</p>
+                <p><strong>ملیت:</strong> آمریکایی</p>
+                <p><strong>بیوگرافی:</strong> آل پاچینو بازیگر و کارگردان برجسته آمریکایی است که با بازی در فیلم‌های
+                    معروف مانند *پدرخوانده* و *صورت زخمی* شهرت یافت. او یکی از پرافتخارترین بازیگران هالیوود است و چندین
+                    جایزه از جمله اسکار، گلدن گلوب و تونی را دریافت کرده است. آل پاچینو با سبک بازیگری شدید و
+                    متعهدانه‌اش شناخته می‌شود و در طول دوران حرفه‌ای خود نقش‌های چالش‌برانگیز بسیاری را ایفا کرده است.
+                </p>
+                <p><strong>جوایز مهم:</strong> جایزه اسکار برای بهترین بازیگر نقش اول مرد در فیلم *بوی خوش زن*، چندین
+                    جایزه گلدن گلوب و جایزه تونی</p>
+            </div>
+            <div class="details-image">
+                <img src="assets/images/AlPacino.jpg" alt="Al Pacino Image">
+            </div>
+        </section>
+
+
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <div class="gallery-show">
+                <!-- Placeholder for selected -->
+                <img id="mainImage" src="assets/images/AlPacino1.jpg" alt="Gallery Main Image">
+            </div>
+            <div class="gallery-thumbnails">
+                <!-- Thumbnail images for the trailer -->
+                <img src="assets/images/AlPacino.jpg" alt="Thumbnail">
+                <img src="assets/images/AlPacino1.jpg" alt="Thumbnail">
+                <img src="assets/images/AlPacino2.jpg" alt="Thumbnail">
+                <img src="assets/images/AlPacino3.jpg" alt="Thumbnail">
+            </div>
+        </section>
+
+        <!-- Related Actors and Movies Section -->
+        <section class="item-cards-section">
+            <!-- Related Movies Section -->
+            <section class="related-movies">
+                <h3>فیلم‌های مرتبط</h3>
+                <div class="item-card-list">
+                    <div class="item-card">
+                        <a href="movie-details.html" class="item-card-link">
+                            <img src="assets/images/GodfatherPart2Poster.png" alt="Related Movie 1">
+                            <p class="movie-title">پدرخوانده: قسمت دوم</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="assets/images/TheShawshankRedemption.jpg" alt="Related Movie 2">
+                            <p class="movie-title">رستگاری در شاوشنگ</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="assets/images/ForrestGump.jpg" alt="Related Movie 3">
+                            <p class="movie-title">فارست گامپ</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+
+</html>
