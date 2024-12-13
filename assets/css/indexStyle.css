@@ -1,0 +1,132 @@
+
+.search-section {
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-section h1 {
+    font-family: var(--font-family);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--second-color);
+    height: 80px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid var(--forth-color);
+    background-color: var(--forth-color);
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.2s ease;
+}
+
+.search-box button {
+    background-color: var(--third-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-box button:hover {
+    background-color: var(--forth-color);
+    transform: scale(1.05);
+}
+
+
+
+.movie-section {
+    padding: 10px;
+}
+
+.movie-section h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.movie-section>section
+{
+    background-color: var(--second-color);
+    padding: 10px;
+}
+
+.movie-list {
+    margin: 15px;
+    padding: 10px;
+    background-color: var(--third-color);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    overflow-x: auto; /* امکان اسکرول افقی برای نمایش بیشتر */
+    padding-bottom: 10px;  
+}
+
+.movie-card {
+    width: 120px;
+    flex-shrink: 0;
+    text-align: center;
+    font-family: var(--font-family);
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.movie-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.movie-info p {
+    margin: 5px 0;
+}
+
+.most-viewed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.related-link {
+    text-decoration: none; /* حذف خط زیر لینک */
+    color: inherit; /* حفظ رنگ متن */
+    display: block; /* کل کادر کلیک‌پذیر شود */
+    text-align: center;
+}
+
+.related-link img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.2s ease; /* افکت برای حالت هاور */
+}
+
+.related-link:hover img {
+    transform: scale(1.05); /* بزرگ‌نمایی تصویر هنگام هاور */
+}
