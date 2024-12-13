@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Explorer - Movie Page</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/moviePageStyle.css">
+    <link rel="stylesheet" href="/assets/css/item-card-list-style.css">
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav>
+        <div class="nav-right">
+            <a href="MainPage.html">صفحه اصلی</a>
+            <a href="#">دسته بندی ها</a>
+            <a href="#">تماس با ما</a>
+        </div>
+        <div class="nav-left">
+            <span class="username">حسین</span>
+            <img src="/assets/images/user_icon.png" alt="User Icon" class="user-icon">
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Movie Details Section -->
+        <section class="movie-details">
+            <div class="movie-information">
+                <h2>پدرخوانده (The Godfather)</h2>
+                <div class="follow-button">
+                    <button id="followToggle" class="follow-icon">
+                        <span>⭐</span> نشان کردن
+                    </button>
+                </div>
+
+                <p><strong>ژانر:</strong> جنایی، درام</p>
+                <p><strong>تاریخ انتشار:</strong> ۱۹۷۲</p>
+                <p><strong>مدت زمان:</strong> ۱۷۵ دقیقه</p>
+                <p><strong>زبان:</strong> انگلیسی، ایتالیایی</p>
+                <p><strong>کیفیت:</strong> BluRay 720p</p>
+                <p><strong>فرمت:</strong> MP4</p>
+                <p><strong>ستارگان:</strong> آل پاچینو، رابرت دنیرو، رابرت دووال، جیمز کان</p>
+                <p><strong>کارگردان:</strong> فرانسیس فورد کاپولا</p>
+                <p><strong>خلاصه داستان:</strong> فیلم زندگی حرفه‌ای کاری ویتو کورلئونه در سال ۱۹۲۰ در نیویورک را به
+                    تصویر می‌کشد و این در حالی است که پسرش مایکل، در حال گسترش کسب و کارش است و...</p>
+            </div>
+            <div class="movie-poster">
+                <img src="/assets/images/GodfatherPoster.png" alt="The Godfather Poster">
+            </div>
+        </section>
+
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <div class="gallery-show">
+                <!-- Placeholder for selected -->
+                <img id="mainImage" src="GodFatherImage1.jpg" alt="Gallery Main Image">
+            </div>
+            <div class="gallery-thumbnails">
+                <!-- Thumbnail images for the gallery -->
+                <img src="/assets/images/GodFatherImage1.jpg" alt="Thumbnail">
+                <img src="/assets/images/GodFatherImage2.jpg" alt="Thumbnail">
+                <img src="/assets/images/GodFatherImage3.jpg" alt="Thumbnail">
+                <img src="/assets/images/GodFatherImage4.jpg" alt="Thumbnail">
+                <img src="/assets/images/GodFatherImage5.jpg" alt="Thumbnail">
+            </div>
+        </section>
+
+        <!-- Related Actors and Movies Section -->
+        <section class="item-cards-section">
+            <!-- related actors Section -->
+            <section class="related-actors">
+                <h3>بازیگران مرتبط</h3>
+                <div class="item-card-list">
+                    <div class="item-card">
+                        <a href="ArtistPage.html" class="item-card-link">
+                            <img src="/assets/images/AlPacino.jpg" alt="Al Pacino">
+                            <p class="actor-name">آل پاچینو</p>
+                            <p class="actor-role">مایکل کورلئونه</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/MarlonBrando.jpg" alt="Marlon Brando">
+                            <p class="actor-name">مارلون براندو</p>
+                            <p class="actor-role">ویتو کورلئونه</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/RobertDuvall.jpg" alt="Robert Duvall">
+                            <p class="actor-name">رابرت دووال</p>
+                            <p class="actor-role">تام هاگن</p>
+                        </a>
+                    </div>
+                    <!-- بازیگران بیشتر در صورت نیاز اضافه کنید -->
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/RobertDuvall.jpg" alt="Robert Duvall">
+                            <p class="actor-name">رابرت دووال</p>
+                            <p class="actor-role">تام هاگن</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/RobertDuvall.jpg" alt="Robert Duvall">
+                            <p class="actor-name">رابرت دووال</p>
+                            <p class="actor-role">تام هاگن</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/RobertDuvall.jpg" alt="Robert Duvall">
+                            <p class="actor-name">رابرت دووال</p>
+                            <p class="actor-role">تام هاگن</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/RobertDuvall.jpg" alt="Robert Duvall">
+                            <p class="actor-name">رابرت دووال</p>
+                            <p class="actor-role">تام هاگن</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/RobertDuvall.jpg" alt="Robert Duvall">
+                            <p class="actor-name">رابرت دووال</p>
+                            <p class="actor-role">تام هاگن</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/RobertDuvall.jpg" alt="Robert Duvall">
+                            <p class="actor-name">رابرت دووال</p>
+                            <p class="actor-role">تام هاگن</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/RobertDuvall.jpg" alt="Robert Duvall">
+                            <p class="actor-name">رابرت دووال</p>
+                            <p class="actor-role">تام هاگن</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/RobertDuvall.jpg" alt="Robert Duvall">
+                            <p class="actor-name">رابرت دووال</p>
+                            <p class="actor-role">تام هاگن</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <!-- Related Movies Section -->
+            <section class="related-movies">
+                <h3>فیلم‌های مرتبط</h3>
+                <div class="item-card-list">
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/GodfatherPart2Poster.png" alt="Related Movie 1">
+                            <p class="movie-title">پدرخوانده: قسمت دوم</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/TheShawshankRedemption.jpg" alt="Related Movie 2">
+                            <p class="movie-title">رستگاری در شاوشنگ</p>
+                        </a>
+                    </div>
+                    <div class="item-card">
+                        <a href="" class="item-card-link">
+                            <img src="/assets/images/ForrestGump.jpg" alt="Related Movie 3">
+                            <p class="movie-title">فارست گامپ</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- User Command and Rating Section -->
+        <section class="command-rating-section">
+            <form class="rating-form">
+                <!-- Command Text Area -->
+                <label for="user-command">نظر شما:</label>
+                <textarea id="user-command" placeholder="نظر خود را اینجا بنویسید..."></textarea>
+
+                <!-- Star Rating -->
+                <label for="user-rating">امتیاز شما:</label>
+                <div class="star-rating" id="user-rating">
+                    <input type="radio" name="rating" id="star5" value="5">
+                    <label for="star5" class="star">&#9733;</label>
+                    <input type="radio" name="rating" id="star4" value="4">
+                    <label for="star4" class="star">&#9733;</label>
+                    <input type="radio" name="rating" id="star3" value="3">
+                    <label for="star3" class="star">&#9733;</label>
+                    <input type="radio" name="rating" id="star2" value="2">
+                    <label for="star2" class="star">&#9733;</label>
+                    <input type="radio" name="rating" id="star1" value="1">
+                    <label for="star1" class="star">&#9733;</label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+
+        <section class="review-section">
+            <div class="review">
+                <div class="review-detail">
+                    <div class="name">علیرضا - 12 فروردین:</div>
+                    <div class="rating">
+                        <span class="rating-empty">★★</span>
+                        <span class="rating-fill">★★★</span>
+                    </div>
+
+                    <div class="like-count">
+                        <span for="like-count">32</span>
+                        <span for="like-count">❤️</span>
+                    </div>
+                </div>
+
+                <div class="text">بد نبود</div>
+
+                <div class="review-reply">
+                    <div class="review-detail">
+                        <div class="name">محمد - 15 فروردین:</div>
+                        <div class="like-count">
+                            <span for="like-count">3</span>
+                            <span for="like-count">❤️</span>
+                        </div>
+                    </div>
+                    <div class="text">بد نبود یا عالی بود؟</div>
+                </div>
+                <div class="review-reply">
+                    <div class="review-detail">
+                        <div class="name">نام کاربر - تاریخ</div>
+                        <div class="like-count">
+                            <span for="like-count">0</span>
+                            <span for="like-count">❤️</span>
+                        </div>
+                    </div>
+                    <div class="text">نظر شما...</div>
+                </div>
+            </div>
+
+            <div class="review">
+                <div class="review-detail">
+                    <div class="name">نام کاربر - تاریخ</div>
+                    <div class="rating">
+                        <span class="rating-empty">★</span>
+                        <span class="rating-fill">★★★★</span>
+                    </div>
+                    <div class="like-count">
+                        <span for="like-count">32</span>
+                        <span for="like-count">❤️</span>
+                    </div>
+                </div>
+
+                <div class="text">نظر شما...</div>
+
+                <div class="review-reply">
+                    <div class="review-detail">
+                        <div class="name">نام کاربر - تاریخ</div>
+                        <div class="like-count">
+                            <span for="like-count">32</span>
+                            <span for="like-count">❤️</span>
+                        </div>
+                    </div>
+                    <div class="text">نظر شما...</div>
+                </div>
+                <div class="review-reply">
+                    <div class="review-detail">
+                        <div class="name">نام کاربر - تاریخ</div>
+                        <div class="like-count">
+                            <span for="like-count">32</span>
+                            <span for="like-count">❤️</span>
+                        </div>
+                    </div>
+                    <div class="text">نظر شما...</div>
+                </div>
+                <div class="review-reply">
+                    <div class="review-detail">
+                        <div class="name">نام کاربر - تاریخ</div>
+                        <div class="like-count">
+                            <span for="like-count">32</span>
+                            <span for="like-count">❤️</span>
+                        </div>
+                    </div>
+                    <div class="text">نظر شما...</div>
+                </div>
+            </div>
+
+        </section>
+
+
+
+    </main>
+</body>
+
+</html>
