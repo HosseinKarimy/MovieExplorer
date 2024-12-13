@@ -1,0 +1,33 @@
+
+nav{
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: var(--first-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.nav-right a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #333;
+}
