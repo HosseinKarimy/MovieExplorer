@@ -1,0 +1,54 @@
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.details-image img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.details-information>p {
+    margin: 5px;
+}
+
+.details-poster img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+
+.follow-button {
+    text-align: right; /* قرارگیری دکمه در گوشه */
+    margin: 10px 0;
+}
+
+.follow-icon {
+    background-color: var(--second-color);
+    color: #fff;
+    font-family: var(--font-family);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: .7rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.follow-icon:hover {
+    background-color: var(--first-color); /* رنگ دکمه هنگام هاور */
+}
+
+.follow-icon.followed {
+    background-color: var(--third-color); /* رنگ دکمه در حالت فعال */
+    color: #333;
+}
