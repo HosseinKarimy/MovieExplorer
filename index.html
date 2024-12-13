@@ -12,17 +12,15 @@
 
 <body>
     <!-- navbar -->
-    <nav>
-        <div class="nav-right">
-            <a href="MainPage.html">صفحه اصلی</a>
-            <a href="#">دسته بندی ها</a>
-            <a href="#">تماس با ما</a>
-        </div>
-        <div class="nav-left">
-            <span class="username">حسین</span>
-            <img src="assets\images\user_icon.png" alt="User Icon" class="user-icon">
-        </div>
-    </nav>
+    <div id="navbar"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading navbar:', error));
+    </script>
 
     <!-- Main Content -->
     <main>
@@ -41,7 +39,7 @@
             <div class="item-card-list">
                 <!-- Each movie card -->
                 <div class="item-card">
-                    <a href="MoviePage.html" class="item-card-link">
+                    <a href="GodFatherPage.html" class="item-card-link">
                         <img src="assets\images\GodfatherPoster.png" alt="Related Movie 1">
                         <p class="movie-title">پدرخوانده</p>
                     </a>
@@ -116,19 +114,19 @@
                         <a href="" class="item-card-link">
                             <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
                             <p class="movie-title">فارست گامپ</p>
-                            </a>
+                        </a>
                     </div>
                     <div class="item-card">
                         <a href="" class="item-card-link">
                             <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
                             <p class="movie-title">فارست گامپ</p>
-                            </a>
+                        </a>
                     </div>
                     <div class="item-card">
                         <a href="" class="item-card-link">
                             <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
                             <p class="movie-title">فارست گامپ</p>
-                            </a>
+                        </a>
 
                     </div>
                 </div>
@@ -141,19 +139,19 @@
                         <a href="" class="item-card-link">
                             <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
                             <p class="movie-title">فارست گامپ</p>
-                            </a>
+                        </a>
                     </div>
                     <div class="item-card">
                         <a href="" class="item-card-link">
                             <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
                             <p class="movie-title">فارست گامپ</p>
-                            </a>
+                        </a>
                     </div>
                     <div class="item-card">
                         <a href="" class="item-card-link">
                             <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
                             <p class="movie-title">فارست گامپ</p>
-                            </a>
+                        </a>
 
                     </div>
                 </div>
@@ -166,19 +164,19 @@
                         <a href="" class="item-card-link">
                             <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
                             <p class="movie-title">فارست گامپ</p>
-                            </a>
+                        </a>
                     </div>
                     <div class="item-card">
                         <a href="" class="item-card-link">
                             <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
                             <p class="movie-title">فارست گامپ</p>
-                            </a>
+                        </a>
                     </div>
                     <div class="item-card">
                         <a href="" class="item-card-link">
                             <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
                             <p class="movie-title">فارست گامپ</p>
-                            </a>
+                        </a>
 
                     </div>
                 </div>

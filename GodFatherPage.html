@@ -11,18 +11,16 @@
 </head>
 
 <body>
-    <!-- navbar -->
-    <nav>
-        <div class="nav-right">
-            <a href="MainPage.html">صفحه اصلی</a>
-            <a href="#">دسته بندی ها</a>
-            <a href="#">تماس با ما</a>
-        </div>
-        <div class="nav-left">
-            <span class="username">حسین</span>
-            <img src="/assets/images/user_icon.png" alt="User Icon" class="user-icon">
-        </div>
-    </nav>
+    <<!-- navbar -->
+    <div id="navbar"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading navbar:', error));
+    </script>
 
     <!-- Main Content -->
     <main>
@@ -76,7 +74,7 @@
                 <h3>بازیگران مرتبط</h3>
                 <div class="item-card-list">
                     <div class="item-card">
-                        <a href="ArtistPage.html" class="item-card-link">
+                        <a href="" class="item-card-link">
                             <img src="/assets/images/AlPacino.jpg" alt="Al Pacino">
                             <p class="actor-name">آل پاچینو</p>
                             <p class="actor-role">مایکل کورلئونه</p>
