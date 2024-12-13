@@ -1,0 +1,69 @@
+.item-cards-section {
+    padding: 20px;
+}
+
+.item-cards-section>section {
+    background-color: var(--second-color);
+    padding: 10px;
+}
+
+.item-card-list
+{
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* امکان اسکرول افقی برای نمایش بیشتر */
+    padding-bottom: 10px; 
+    margin: 15px;
+    padding: 10px;
+    background-color: var(--third-color);
+    border-radius: 5px;
+}
+
+.item-card {
+    width: 120px;
+    flex-shrink: 0;
+    text-align: center;
+    font-family: var(--font-family);
+}
+.item-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.item-card-link {
+    text-decoration: none; /* حذف خط زیر لینک */
+    color: inherit; /* حفظ رنگ متن */
+    display: block; /* کل کادر کلیک‌پذیر شود */
+    text-align: center;
+}
+
+.item-card-link img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.2s ease; /* افکت برای حالت هاور */
+}
+
+.item-card-link:hover img {
+    transform: scale(1.05); /* بزرگ‌نمایی تصویر هنگام هاور */
+}
+
+
+.actor-name {
+    font-weight: bold;
+    margin: 8px 0 4px;
+    color: #333;
+}
+
+.actor-role {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.movie-title {
+    font-weight: bold;
+    margin: 8px 0 4px;
+    color: #333;
+    font-size: 0.9rem;
+}
