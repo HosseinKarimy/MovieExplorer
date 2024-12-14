@@ -3,90 +3,88 @@
 @import url(item-card-list.css);
 
 /* related section*/
-
-.command-rating-section {
+.comment-section {
+    padding: 20px;
+    background-color: var(--first-color);
     border-radius: 8px;
-    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-family);
+}
+
+.comment-section>section {
+    background-color: var(--second-color);
     padding: 10px;
 }
 
-.command-rating-section h3 {
-    margin-bottom: 15px;
+.comment-section h2 {
+    margin-bottom: 20px;
     color: #333;
+    font-size: 1.5rem;
+    text-align: center;
 }
 
-.rating-form {
+.review-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 15px;
 }
 
-.rating-form label {
-    margin: 10px 0 5px;
-    font-size: 1em;
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-section label {
+    font-size: 1rem;
+    margin-bottom: 5px;
     color: #333;
 }
 
-textarea {
-    width: 100%;
-    max-width: 400px;
-    height: 80px;
+.comment-section input, textarea {
     padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #333;
-    resize: none;
-    font-size: 1em;
-    margin-bottom: 15px;
-    background-color: var(--forth-color);
+    border: 1px solid var(--forth-color);
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.rating {
-    font-size: 25px;    
-    display: flex;    
+.comment-section input:focus, textarea:focus {
+    border-color: var(--first-color);
+    box-shadow: 0 0 5px rgba(0, 162, 232, 0.5);
 }
 
-.rating-empty { color: aliceblue;}
-.rating-fill { color: gold}
-
-.star-rating {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
+.comment-section button {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--first-color);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.star-rating input[type="radio"] {
+.comment-section button:hover {
+    background-color: var(--third-color);
+    transform: scale(1.05);
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
     display: none;
 }
 
-.star-rating label.star {
-    font-size: 2em;
-    color: #ddd;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.star-rating input[type="radio"]:checked ~ label.star {
-    color: gold;
-}
-
-.star-rating label.star:hover,
-.star-rating label.star:hover ~ label.star {
-    color: gold;
-}
-
-button[type="submit"] {
-    background-color: var(--forth-color);
-    color: #333;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-    background-color: var(--second-color);
+.success-message {
+    color: green;
+    font-size: 1rem;
+    margin-top: 15px;
+    text-align: center;
+    display: none;
 }
 
 
