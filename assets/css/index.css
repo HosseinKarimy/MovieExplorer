@@ -53,3 +53,49 @@
     background-color: var(--forth-color);
     transform: scale(1.05);
 }
+
+
+.faq-container {  
+    padding: 20px;
+    text-align: right;
+}
+
+.faq-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.faq-item {
+    background-color: var(--second-color);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+    border: none;
+    width: 100%;
+    text-align: right;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: var(--third-color);
+}
+
+.faq-question:hover {
+    background-color: var(--forth-color);
+}
+
+.faq-answer {
+    display: none; /* پاسخ‌ها در ابتدا مخفی هستند */
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    color: #333;
+    line-height: 1.6;
+}
+
