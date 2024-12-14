@@ -46,3 +46,18 @@ function showError(inputElement, message) {
     errorElement.textContent = message;
     errorElement.style.display = "block";
 }
+
+
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    const slides = document.querySelectorAll(".slide");
+    slides.forEach((slide) => (slide.style.display = "none")); // پنهان کردن همه اسلایدها
+    slideIndex++;
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+    slides[slideIndex - 1].style.display = "block"; // نمایش اسلاید فعلی
+    setTimeout(showSlides, 5000); // تغییر اسلاید هر 5 ثانیه
+}

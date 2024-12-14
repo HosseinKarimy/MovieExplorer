@@ -129,4 +129,38 @@
   }
 
 
+/* استایل کلی اسلایدشو */
+.slideshow-container {
+    position: relative;
+    max-width: 100%; /* عرض کامل */
+    margin: auto;
+    overflow: hidden; /* پنهان کردن بخش‌های اضافی */
+    border-radius: 10px; /* گرد کردن گوشه‌ها */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* سایه برای زیبایی */
+}
+
+/* استایل هر اسلاید */
+.slide {
+    display: none; /* اسلایدها به صورت پیش‌فرض مخفی می‌شوند */
+}
+
+.slide img {
+    width: 100%; /* تصاویر عرض کامل می‌گیرند */
+    height: auto; /* حفظ نسبت تصاویر */
+    border-radius: 10px; /* گرد کردن گوشه‌ها */
+}
+
+/* افکت محو شدن برای انتقال */
+.fade {
+    animation: fadeEffect 1s ease-in-out;
+}
+
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
