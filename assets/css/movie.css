@@ -1,6 +1,6 @@
 @import url('gallery.css');
 @import url('movie-artist-details.css');
-@import url(item-card-list.css);
+@import url('item-card-list.css');
 
 /* related section*/
 .comment-section {
@@ -32,6 +32,10 @@
 .form-group {
     display: flex;
     flex-direction: column;
+}
+
+.form-group input,textarea {
+    background-color: var(--forth-color);
 }
 
 .comment-section label {
