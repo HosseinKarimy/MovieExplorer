@@ -17,6 +17,14 @@
     --font-family: sans-serif , Arial ;
 }
 
+.green-theme {
+    --first-color: #6DBF7B; /* سبز ملایم */
+    --second-color: #8FCE92; /* سبز روشن‌تر */
+    --third-color: #A3D9A8; /* سبز پاستلی */
+    --forth-color: #C8EBD0; /* سبز خیلی روشن */
+    --font-family: sans-serif, Arial;
+}
+
 section {
     margin-top: 10px;
     margin-left: 5px;
