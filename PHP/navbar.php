@@ -6,9 +6,15 @@
         <a href="#" id="change-theme" onclick="changeColor()"> تغییر تم </a>
     </div>
      <div class="nav-left">
-        <!-- <span class="username">حسین</span>
-        <img src="assets\images\user_icon.png" alt="User Icon" class="user-icon"> -->
-        <a href="signup.html">ثبت‌نام</a>
+         <?php
+          $islogin = false;
+
+          if($islogin)
+            echo '<span class="username">حسین</span>
+          <img src="assets\images\user_icon.png" alt="User Icon" class="user-icon">';
+          else 
+            echo '<a href="signup.html">ثبت‌نام</a>'
+        ?>  
     </div> 
 
 
