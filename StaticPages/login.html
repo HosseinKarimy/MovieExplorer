@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود کاربر</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/signup.css">
+</head>
+<body>
+    <!-- Registration Form -->
+    <section class="registration-section">
+        <h2>ورود</h2>
+        <form class="registration-form" action="/PHP/Login.php" method="POST">
+            <!-- Username Field -->
+            <label for="username">نام کاربری:</label>
+            <input type="text" id="username" name="username" required>
+
+            <!-- Password Field -->
+            <label for="password">رمز عبور:</label>
+            <input type="password" id="password" name="password" required>     
+
+            <!-- Submit Button -->
+            <button type="submit">ورود</button>
+        </form>
+        <a href="/StaticPages/signup.html">ثبت نام</a>
+    </section>
+    <script src="/assets/js/theme.js"></script>
+</body>
+</html>
