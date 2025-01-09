@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fa">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/signup.css">
 </head>
+
 <body>
     <!-- Registration Form -->
     <section class="registration-section">
         <h2>ثبت نام</h2>
-        <form class="registration-form" action="/PHP/Register.php" method="POST">
+        <form class="registration-form" action="/PHP/Register.php" method="POST" enctype="multipart/form-data">
             <!-- Username Field -->
             <label for="username">نام کاربری:</label>
             <input type="text" id="username" name="username" required>
@@ -28,35 +30,41 @@
             <label for="password">رمز عبور:</label>
             <input type="password" id="password" name="password" required>
 
+            <!-- Profile Image Upload -->
+            <label for="profile_image">تصویر پروفایل:</label>
+            <input type="file" id="profile_image" name="profile_image" accept="image/*">
+
             <!-- Genre Selection -->
             <label>ژانرهای مورد علاقه:</label>
             <div class="genre-selection">
                 <input type="checkbox" id="genre1" name="genres[]" value="1">
                 <label for="genre1">اکشن</label>
-            
+
                 <input type="checkbox" id="genre2" name="genres[]" value="2">
                 <label for="genre2">کمدی</label>
-            
+
                 <input type="checkbox" id="genre3" name="genres[]" value="3">
                 <label for="genre3">درام</label>
-            
+
                 <input type="checkbox" id="genre4" name="genres[]" value="4">
                 <label for="genre4">ترسناک</label>
-            
+
                 <input type="checkbox" id="genre5" name="genres[]" value="5">
                 <label for="genre5">عاشقانه</label>
-            
+
                 <input type="checkbox" id="genre6" name="genres[]" value="6">
                 <label for="genre6">علمی تخیلی</label>
-            
+
                 <input type="checkbox" id="genre7" name="genres[]" value="7">
                 <label for="genre7">هیجان انگیز</label>
-            </div>            
+            </div>
 
             <!-- Submit Button -->
             <button type="submit">ثبت نام</button>
         </form>
+        <a href="/StaticPages/login.html">ورود به حساب کاربری</a>
     </section>
     <script src="/assets/js/theme.js"></script>
 </body>
+
 </html>
