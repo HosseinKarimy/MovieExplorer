@@ -35,7 +35,7 @@ function CreateListOfMovieCard($movies, $header)
  * @param int $limit The number of movies to fetch. Default is 10.
  * @return array The list of movies.
  */
-function fetchMoviesFromDb($db)
+function fetchMoviesFromDb($db,$orderBy = 'Date')
 {
     $query = "SELECT 
      mo.Id AS id, 
@@ -45,7 +45,10 @@ function fetchMoviesFromDb($db)
      movies mo
     LEFT JOIN 
      media me ON me.MovieId = mo.Id AND me.Type = 'poster'
-    GROUP BY mo.Id
+    GROUP BY 
+     mo.Id
+    ORDER BY 
+     mo.$orderBy DESC;
     ";
 
     $stmt = $db->prepare($query);

@@ -1,3 +1,7 @@
+<?php session_start();
+require 'PHP\helper.php';
+require 'PHP\database.php';
+?>
 <!DOCTYPE html>
 <html lang="fa">
 
@@ -5,15 +9,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Explorer</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
 </head>
 
 <body>
     <!-- navbar -->
     <?php require 'PHP/navbar.php'
     ?>
-
+ 
     <!-- Main Content -->
     <main>
         <!-- Search Section -->
@@ -26,154 +30,18 @@
         </section>
 
         <!-- Recommended Movies Section -->
-        <section class="item-cards-section">
-            <h2>پیشنهاداتی مخصوص شما</h2>
-            <div class="item-card-list">
-                <!-- Each movie card -->
-                <div class="item-card">
-                    <a href="GodFatherPage.html" class="item-card-link">
-                        <img src="assets\images\GodfatherPoster.png" alt="Related Movie 1">
-                        <p class="movie-title">پدرخوانده</p>
-                    </a>
-                </div>
-                <div class="item-card">
-                    <a href="" class="item-card-link">
-                        <img src="assets\images\GodfatherPart2Poster.png" alt="Related Movie 1">
-                        <p class="movie-title">پدرخوانده: قسمت دوم</p>
-                    </a>
-                </div>
-                <div class="item-card">
-                    <a href="" class="item-card-link">
-                        <img src="assets\images\TheShawshankRedemption.jpg" alt="Related Movie 2">
-                        <p class="movie-title">رستگاری در شاوشنگ</p>
-                    </a>
-                </div>
-                <div class="item-card">
-                    <a href="" class="item-card-link">
-                        <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                        <p class="movie-title">فارست گامپ</p>
-                    </a>
-                </div>
-                <div class="item-card">
-                    <a href="" class="item-card-link">
-                        <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                        <p class="movie-title">فارست گامپ</p>
-                    </a>
-                </div>
-            </div>
-        </section>
 
         <!-- Newest Movies Section -->
-        <section class="item-cards-section">
-            <h2>جدیدترین‌ها</h2>
-            <div class="item-card-list">
-                <!-- Each movie card -->
-                <div class="item-card">
-                    <a href="movie-details.html" class="item-card-link">
-                        <img src="assets\images\GodfatherPart2Poster.png" alt="Related Movie 1">
-                        <p class="movie-title">پدرخوانده: قسمت دوم</p>
-                    </a>
-                </div>
-                <div class="item-card">
-                    <a href="" class="item-card-link">
-                        <img src="assets\images\TheShawshankRedemption.jpg" alt="Related Movie 2">
-                        <p class="movie-title">رستگاری در شاوشنگ</p>
-                    </a>
-                </div>
-                <div class="item-card">
-                    <a href="" class="item-card-link">
-                        <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                        <p class="movie-title">فارست گامپ</p>
-                    </a>
-                </div>
-                <div class="item-card">
-                    <a href="" class="item-card-link">
-                        <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                        <p class="movie-title">فارست گامپ</p>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <?php         
+        $movies = fetchMoviesFromDb($db);
+        echo CreateListOfMovieCard($movies,'جدیدترین‌ها');
+        ?>
 
         <!-- Most Viewed Movies Section -->
-        <section class="item-cards-section">
-            <h2>پر بازدیدترین‌ها</h2>
-            <section class="day">
-                <h3>روز</h3>
-                <div class="item-card-list">
-                    <!-- Movie Cards here -->
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                            <p class="movie-title">فارست گامپ</p>
-                        </a>
-                    </div>
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                            <p class="movie-title">فارست گامپ</p>
-                        </a>
-                    </div>
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                            <p class="movie-title">فارست گامپ</p>
-                        </a>
-
-                    </div>
-                </div>
-            </section>
-            <section class="week">
-                <h3>هفته</h3>
-                <div class="item-card-list">
-                    <!-- Movie Cards here -->
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                            <p class="movie-title">فارست گامپ</p>
-                        </a>
-                    </div>
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                            <p class="movie-title">فارست گامپ</p>
-                        </a>
-                    </div>
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                            <p class="movie-title">فارست گامپ</p>
-                        </a>
-
-                    </div>
-                </div>
-            </section>
-            <section class="month">
-                <h3>ماه</h3>
-                <div class="item-card-list">
-                    <!-- Movie Cards here -->
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                            <p class="movie-title">فارست گامپ</p>
-                        </a>
-                    </div>
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                            <p class="movie-title">فارست گامپ</p>
-                        </a>
-                    </div>
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets\images\ForrestGump.jpg" alt="Related Movie 3">
-                            <p class="movie-title">فارست گامپ</p>
-                        </a>
-
-                    </div>
-                </div>
-            </section>
-        </section>
+        <?php         
+        $movies = fetchMoviesFromDb($db , 'ViewCount ');
+        echo CreateListOfMovieCard($movies,'پربازدیدترین ها');
+        ?>
 
         <section class="faq-container">
             <h2>سوالات متداول</h2>
