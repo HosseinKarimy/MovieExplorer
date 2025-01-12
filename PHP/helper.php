@@ -139,7 +139,7 @@ function getMoviePosters($db, $movieId)
 function CreateArtistCard($name, $role , $id, $image)
 {
     return '<div class="item-card">
-                <a href="' . htmlspecialchars('PHP/movie.php?id=' . $id) . '" class="item-card-link">
+                <a href="' . htmlspecialchars('artist.php?id=' . $id) . '" class="item-card-link">
                     <img src="' . htmlspecialchars($image) . '" alt="' . htmlspecialchars($name) . '">
                     <p class="actor-name">' . htmlspecialchars($name) . '</p>
                     <p class="actor-role">' . htmlspecialchars($role) . '</p>
@@ -166,7 +166,7 @@ function CreateListOfArtistCard($Artists, $header)
             </section>';
 }
 
-function fetchArtistsFromDb($db,$orderBy = 'name')
+function fetchArtistsFromDb($db,$orderBy = 'name' , $movieId)
 {
     $query = "SELECT 
      ar.Id AS id,
@@ -176,9 +176,9 @@ function fetchArtistsFromDb($db,$orderBy = 'name')
     FROM
      artist ar 
     JOIN
-     acts a on a.ActorId = ar.Id AND a.MovieId = 1
+     acts a on a.ActorId = ar.Id AND a.MovieId = $movieId
     JOIN 
-     media m on m.ArtirstId = ar.Id
+     media m on m.ArtistId = ar.Id
     GROUP BY
      ar.Id
     ORDER BY

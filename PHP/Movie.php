@@ -7,7 +7,8 @@ $movieId = $_GET['id']; // Get movie ID from URL
 $movieDetails = getMovieDetails($db, $movieId);
 $genres = getMovieGenres($db, $movieId);
 $posters = getMoviePosters($db, $movieId);
-$artist = fetchArtistsFromDb($db);
+$artist = fetchArtistsFromDb($db , 'name' , $movieId);
+$media = fetchMediaFromDb($db , 'movieid' , $movieId);
 ?>
 
 <!DOCTYPE html>
@@ -80,29 +81,11 @@ $artist = fetchArtistsFromDb($db);
             ?>
                 
             <!-- Related Movies Section -->
-            <section class="related-movies">
-                <h3>فیلم‌های مرتبط</h3>
-                <div class="item-card-list">
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets/images/GodfatherPart2Poster.png" alt="Related Movie 1">
-                            <p class="movie-title">پدرخوانده: قسمت دوم</p>
-                        </a>
-                    </div>
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets/images/TheShawshankRedemption.jpg" alt="Related Movie 2">
-                            <p class="movie-title">رستگاری در شاوشنگ</p>
-                        </a>
-                    </div>
-                    <div class="item-card">
-                        <a href="" class="item-card-link">
-                            <img src="assets/images/ForrestGump.jpg" alt="Related Movie 3">
-                            <p class="movie-title">فارست گامپ</p>
-                        </a>
-                    </div>
-                </div>
-            </section>
+            <?php         
+             $movies = fetchMoviesFromDb($db);
+            // $movies = fetchRelatedMovies($db);
+             echo CreateListOfMovieCard($movies,'فیلم های مرتبط');
+            ?>
         </section>
 
         <!-- User Command and Rating Section -->
