@@ -1,4 +1,4 @@
-document.getElementById("review-form").addEventListener("submit", function (e) {
+document.getElementById("review-form").addEventListener("submit", function (e) {   
     e.preventDefault(); // جلوگیری از ارسال فرم
     
     // پاک کردن پیام‌های قبلی
@@ -8,25 +8,10 @@ document.getElementById("review-form").addEventListener("submit", function (e) {
     successMessage.style.display = "none";
 
     // متغیرها
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
     const commentInput = document.getElementById("comment");
     let isValid = true;
 
-    // بررسی نام (فقط حروف و فاصله)
-    const nameRegex = /^[\u0600-\u06FF\s]+$/; // پشتیبانی از حروف فارسی
-    if (!nameRegex.test(nameInput.value.trim())) {
-        showError(nameInput, "نام فقط باید شامل حروف و فاصله باشد.");
-        isValid = false;
-    }
-
-    // بررسی فرمت ایمیل
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // فرمت استاندارد ایمیل
-    if (!emailRegex.test(emailInput.value.trim())) {
-        showError(emailInput, "ایمیل معتبر وارد کنید.");
-        isValid = false;
-    }
-
+    
     // بررسی نظر (نباید خالی باشد)
     if (commentInput.value.trim() === "") {
         showError(commentInput, "لطفاً نظر خود را وارد کنید.");
@@ -61,3 +46,67 @@ function showSlides() {
     slides[slideIndex - 1].style.display = "block"; // نمایش اسلاید فعلی
     setTimeout(showSlides, 5000); // تغییر اسلاید هر 5 ثانیه
 }
+
+
+function submitComment(movieId) {
+
+    const comment = document.querySelector("#comment").value.trim();
+    fetch("submit_feedbacks.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+            type: "comment",
+            movie_id: movieId,
+            comment: comment,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                alert(data.message);
+                location.reload(); // بازنشانی صفحه
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+}
+
+function submitRate(movieId) {
+    const rating = document.querySelector("#rating").value.trim();
+
+    if (rating < 1 || rating > 10) {
+        alert("امتیاز باید بین ۱ تا ۱۰ باشد.");
+        return;
+    }
+
+    fetch("submit_feedbacks.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+            type: "rate",
+            movie_id: movieId,
+            rating: rating,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                alert(data.message);
+                location.reload(); // بازنشانی صفحه
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+}
+
+

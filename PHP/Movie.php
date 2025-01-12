@@ -1,4 +1,6 @@
 <?php 
+session_start();
+
 require 'database.php';
 require 'helper.php';
 
@@ -90,26 +92,14 @@ $media = fetchMediaFromDb($db , 'movieid' , $movieId);
 
         <!-- User Command and Rating Section -->
         <section class="comment-section">
+            <?php if (isset($_SESSION['user_id'])): ?>
             <h2>ثبت نظر شما</h2>
             <section>
-                <form id="review-form" class="review-form">
-                    <div class="form-group">
-                        <label for="name">نام:</label>
-                        <input type="text" id="name" name="name" placeholder="نام خود را وارد کنید">
-                        <small class="error-message"></small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">ایمیل:</label>
-                        <input type="text" id="email" name="email" placeholder="ایمیل خود را وارد کنید">
-                        <small class="error-message"></small>
-                    </div>
-
+                    <form id="review-form" class="review-form" onsubmit="submitComment(<?= $movieId ?>); return false;">
                     <div class="form-group">
                         <label for="comment">نظر:</label>
-                        <textarea id="comment" name="comment" rows="5" placeholder="نظر خود را بنویسید"
-                            ></textarea>
-                            <small class="error-message"></small> <small class="error-message"></small>
+                            <textarea id="comment" name="comment" rows="5" placeholder="نظر خود را بنویسید"></textarea>
+                            <small class="error-message"></small>
                     </div>
                     <button type="submit">ارسال نظر</button>
                     <p id="success-message" class="success-message"></p>
@@ -117,15 +107,19 @@ $media = fetchMediaFromDb($db , 'movieid' , $movieId);
             </section>
 
             <section>
-                <form class="review-form">
+                    <form class="review-form" onsubmit="submitRate(<?= $movieId ?>); return false;">
                     <div class="form-group">
                         <label for="rating">امتیاز:</label>
-                        <input type="number" id="rating" name="rating" min="1" max="10" placeholder="امتیاز (1 تا 10)"
-                            required>
+                            <input type="number" id="rating" name="rating" min="1" max="10" placeholder="امتیاز (1 تا 10)" required>
                     </div>
                     <button type="submit">ثبت امتیاز</button>
                 </form>                
             </section>
+            <?php else: ?>
+                <section>
+                    برای ثبت نظر ابتدا باید به سایت <a href="/StaticPages/login.html">وارد شوید</a>
+                </section>
+            <?php endif; ?>
         </section>
 
 
