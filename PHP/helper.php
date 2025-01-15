@@ -234,10 +234,9 @@ function displayComments($db, $movieId, $parentId = null)
     if (empty($comments)) {
         return;
     }
+    foreach ($comments as $comment) {
     if (!isset($parentId))
         echo '<div class="review">';
-    foreach ($comments as $comment) {
-
         if (isset($parentId))
             echo '<div class="review-reply">';
         // بخش اصلی کامنت
@@ -258,7 +257,8 @@ function displayComments($db, $movieId, $parentId = null)
         // کامنت‌های مرتبط (پاسخ‌ها)
         displayComments($db, $movieId, $comment['Id']); // بازگشتی برای نمایش کامنت‌های فرزند
 
-    }
     if (!isset($parentId))
         echo '</div>'; // پایان کامنت
+    }
+    
 }
