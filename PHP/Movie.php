@@ -122,91 +122,10 @@ $media = fetchMediaFromDb($db , 'movieid' , $movieId);
             <?php endif; ?>
         </section>
 
-
         <section class="review-section">
-            <div class="review">
-                <div class="review-detail">
-                    <div class="name">علیرضا - 12 فروردین:</div>
-                    <div class="rating">
-                        <span>8/10</span>
-                    </div>
-
-                    <div class="like-count">
-                        <span for="like-count">32</span>
-                        <span for="like-count">❤️</span>
-                    </div>
-                </div>
-
-                <div class="text">بد نبود</div>
-
-                <div class="review-reply">
-                    <div class="review-detail">
-                        <div class="name">محمد - 15 فروردین:</div>
-                        <div class="like-count">
-                            <span for="like-count">3</span>
-                            <span for="like-count">❤️</span>
-                        </div>
-                    </div>
-                    <div class="text">بد نبود یا عالی بود؟</div>
-                </div>
-                <div class="review-reply">
-                    <div class="review-detail">
-                        <div class="name">نام کاربر - تاریخ</div>
-                        <div class="like-count">
-                            <span for="like-count">0</span>
-                            <span for="like-count">❤️</span>
-                        </div>
-                    </div>
-                    <div class="text">نظر شما...</div>
-                </div>
-            </div>
-
-            <div class="review">
-                <div class="review-detail">
-                    <div class="name">نام کاربر - تاریخ</div>
-                    <div class="rating">
-                        <span> 4/10</span>
-                    </div>
-                    <div class="like-count">
-                        <span for="like-count">32</span>
-                        <span for="like-count">❤️</span>
-                    </div>
-                </div>
-
-                <div class="text">نظر شما...</div>
-
-                <div class="review-reply">
-                    <div class="review-detail">
-                        <div class="name">نام کاربر - تاریخ</div>
-                        <div class="like-count">
-                            <span for="like-count">32</span>
-                            <span for="like-count">❤️</span>
-                        </div>
-                    </div>
-                    <div class="text">نظر شما...</div>
-                </div>
-                <div class="review-reply">
-                    <div class="review-detail">
-                        <div class="name">نام کاربر - تاریخ</div>
-                        <div class="like-count">
-                            <span for="like-count">32</span>
-                            <span for="like-count">❤️</span>
-                        </div>
-                    </div>
-                    <div class="text">نظر شما...</div>
-                </div>
-                <div class="review-reply">
-                    <div class="review-detail">
-                        <div class="name">نام کاربر - تاریخ</div>
-                        <div class="like-count">
-                            <span for="like-count">32</span>
-                            <span for="like-count">❤️</span>
-                        </div>
-                    </div>
-                    <div class="text">نظر شما...</div>
-                </div>
-            </div>
-
+            <?php
+            displayComments($db, $movieId);
+            ?>
         </section>
 
 

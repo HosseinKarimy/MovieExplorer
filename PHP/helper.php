@@ -198,3 +198,67 @@ function fetchArtistsFromDb($db,$orderBy = 'name' , $movieId)
 
     return $movies;
 }
+
+function getCommentsByMovieId($db, $movieId, $parentId = null)
+{
+    $query = "SELECT c.Id, c.UserId, c.MovieId, c.Comment, (select count(*) from commentslikes cl where cl.commentid = c.id) As LikeCount, c.ParrentId, u.Username , c.CreatedAt
+              FROM comments c
+              INNER JOIN users u ON c.UserId = u.Id
+              WHERE c.MovieId = ? AND c.ParrentId " . ($parentId ? "= ?" : "IS NULL") . "
+              ORDER BY c.Id ASC";
+
+    $stmt = $db->prepare($query);
+    if ($parentId) {
+        $stmt->bind_param('ii', $movieId, $parentId);
+    } else {
+        $stmt->bind_param('i', $movieId);
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // تبدیل نتیجه به آرایه
+    $comments = [];
+    while ($row = $result->fetch_assoc()) {
+        $comments[] = $row;
+    }
+
+    // آزادسازی منابع
+    $stmt->close();
+    return $comments;
+}
+
+function displayComments($db, $movieId, $parentId = null)
+{
+    $comments = getCommentsByMovieId($db, $movieId, $parentId); // دریافت کامنت‌ها از پایگاه داده
+
+    if (empty($comments)) {
+        return;
+    }
+    if (!isset($parentId))
+        echo '<div class="review">';
+    foreach ($comments as $comment) {
+
+        if (isset($parentId))
+            echo '<div class="review-reply">';
+        // بخش اصلی کامنت
+        echo '<div class="review-detail">';
+        echo '<div class="name">' . htmlspecialchars($comment['Username']) . ' - ' . date('d F', strtotime($comment['CreatedAt'])) . ':</div>';
+        echo '<div class="like-count">';
+        echo '<span for="like-count">' . $comment['LikeCount'] . '</span>';
+        echo '<button for="like-count" onclick="likeComment(' . $comment['Id'] . ')">❤️</button>';
+        if (!isset($parentId))
+         echo '<button class="reply-button" onclick="showReplyForm(' . $comment['Id'] .','. $movieId . ')">پاسخ</button>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="text">' . htmlspecialchars($comment['Comment']) . '</div>';
+        echo '<div id="reply-' . $comment['Id'] . '"></div>'; // فرم پاسخ به اینجا اضافه خواهد شد
+        if (isset($parentId))
+            echo '</div>';
+
+        // کامنت‌های مرتبط (پاسخ‌ها)
+        displayComments($db, $movieId, $comment['Id']); // بازگشتی برای نمایش کامنت‌های فرزند
+
+    }
+    if (!isset($parentId))
+        echo '</div>'; // پایان کامنت
+}
