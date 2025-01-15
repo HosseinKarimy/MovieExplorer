@@ -110,3 +110,71 @@ function submitRate(movieId) {
 }
 
 
+function likeComment(commentId) {
+    fetch('submit_feedbacks.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ 
+            type: "like",
+            comment_id: commentId }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('لایک ثبت شد!');
+                location.reload(); // بارگذاری مجدد صفحه
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// نمایش فرم پاسخ
+function showReplyForm(parentId , movieId) {
+    const replyForm = `
+        <div class="reply-form">
+            <textarea id="reply-comment${parentId}" placeholder="پاسخ خود را بنویسید"></textarea>
+            <button onclick="submitReply(${parentId} , ${movieId})">ارسال پاسخ</button>
+        </div>
+    `;
+    document.getElementById(`reply-${parentId}`).innerHTML = replyForm;
+}
+
+// ارسال پاسخ
+function submitReply(parentId , movieId) {
+    const comment = document.getElementById("reply-comment" + parentId).value.trim();
+
+    if (!comment) {
+        alert("لطفاً پاسخ خود را وارد کنید.");
+        return;
+    }
+
+    fetch("submit_feedbacks.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+            type: "reply",
+            movie_id : movieId,
+            parent_id: parentId,
+            comment: comment,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                alert("پاسخ شما ثبت شد!");
+                location.reload();
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+}
+
+
+
