@@ -14,7 +14,7 @@
     <img src="/PHP/' . $_SESSION['profile_image'] .  '" alt="User Icon" class="user-icon">';
     } else {
       // If the user is not logged in, show the signup link
-      echo '<a href="StaticPages/signup.html">ثبت‌نام</a>';
+      echo '<a href="/StaticPages/signup.html">ثبت‌نام</a>';
     }
     ?>
 

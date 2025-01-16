@@ -1,6 +1,6 @@
 <?php session_start();
-require 'PHP\helper.php';
-require 'PHP\database.php';
+require 'helper.php';
+require 'database.php';
 ?>
 <!DOCTYPE html>
 <html lang="fa">
@@ -15,7 +15,7 @@ require 'PHP\database.php';
 
 <body>
     <!-- navbar -->
-    <?php require 'PHP/navbar.php'
+    <?php require 'navbar.php'
     ?>
  
     <!-- Main Content -->

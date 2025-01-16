@@ -38,3 +38,35 @@
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+.gallery-show {
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.gallery-show .main-media {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    gap: 10px;
+}
+
+.thumbnail img,
+.thumbnail video {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: border 0.3s;
+}
+
+.thumbnail img:hover,
+.thumbnail video:hover {
+    border: 2px solid #007BFF;
+}

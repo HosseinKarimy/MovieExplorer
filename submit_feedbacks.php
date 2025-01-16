@@ -35,7 +35,8 @@ if ($type === 'comment') {
 }
 
 
-function saveComment($db, $userId, $movieId, $comment) {
+function saveComment($db, $userId, $movieId, $comment)
+{
     $query = "INSERT INTO comments (UserId, MovieId, Comment) VALUES (?, ?, ?)";
     $stmt = $db->prepare($query);
     $stmt->bind_param("iis", $userId, $movieId, $comment);
@@ -46,7 +47,8 @@ function saveComment($db, $userId, $movieId, $comment) {
 
 
 
-function saveRating($db, $userId, $movieId, $rating) {
+function saveRating($db, $userId, $movieId, $rating)
+{
     $query = "INSERT INTO rates (UserId, MovieId, Rate) VALUES (?, ?, ?)";
     $stmt = $db->prepare($query);
     $stmt->bind_param("iii", $userId, $movieId, $rating);
