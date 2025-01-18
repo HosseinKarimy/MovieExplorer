@@ -52,6 +52,12 @@ function fetchMoviesFromDb($db, $orderBy = 'Date')
     $movies = [];
     while ($row = $result->fetch_assoc()) {
         $movies[] = $row;
+        $filePath = $row['image'];
+        // استخراج قسمت آخر URL
+        $text = basename($filePath);
+        // بررسی وجود فایل و تولید تصویر در صورت نیاز
+        checkAndGenerateImage($text, $filePath);
+    
     }
 
     $stmt->close();
@@ -192,12 +198,37 @@ function fetchArtistsFromDb($db, $orderBy = 'name', $movieId)
     $movies = [];
     while ($row = $result->fetch_assoc()) {
         $movies[] = $row;
+        $filePath = $row['image'];
+        // استخراج قسمت آخر URL
+        $text = basename($filePath);
+        // بررسی وجود فایل و تولید تصویر در صورت نیاز
+        checkAndGenerateImage($text, $filePath);
     }
 
     $stmt->close();
 
     return $movies;
 }
+
+
+function fetchArtistByIdFromDb($db, $artistId)
+{
+    $query = "SELECT 
+     *
+    FROM
+     artist
+    WHERE id = $artistId
+    ";
+
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_assoc();
+}
+
 
 
 function fetchMediaFromDb($db, $target = 'MovieId', $targetid)
@@ -215,7 +246,7 @@ function fetchMediaFromDb($db, $target = 'MovieId', $targetid)
     $stmt = $db->prepare($query);
     $stmt->execute();
     $result = $stmt->get_result();
-       
+
     $media = [];
     while ($row = $result->fetch_assoc()) {
         $media[] = $row;
@@ -323,10 +354,10 @@ function displayComments($db, $movieId, $parentId = null)
 
     if (empty($comments)) {
         return;
-    }    
+    }
     foreach ($comments as $comment) {
         if (!isset($parentId))
-        echo '<div class="review">';
+            echo '<div class="review">';
         if (isset($parentId))
             echo '<div class="review-reply">';
         // بخش اصلی کامنت
@@ -336,7 +367,7 @@ function displayComments($db, $movieId, $parentId = null)
         echo '<span for="like-count">' . $comment['LikeCount'] . '</span>';
         echo '<button for="like-count" onclick="likeComment(' . $comment['Id'] . ')">❤️</button>';
         if (!isset($parentId))
-         echo '<button class="reply-button" onclick="showReplyForm(' . $comment['Id'] .','. $movieId . ')">پاسخ</button>';
+            echo '<button class="reply-button" onclick="showReplyForm(' . $comment['Id'] . ',' . $movieId . ')">پاسخ</button>';
         echo '</div>';
         echo '</div>';
         echo '<div class="text">' . htmlspecialchars($comment['Comment']) . '</div>';
@@ -346,11 +377,10 @@ function displayComments($db, $movieId, $parentId = null)
 
         // کامنت‌های مرتبط (پاسخ‌ها)
         displayComments($db, $movieId, $comment['Id']); // بازگشتی برای نمایش کامنت‌های فرزند
-        
+
         if (!isset($parentId))
-        echo '</div>'; // پایان کامنت
+            echo '</div>'; // پایان کامنت
     }
-    
 }
 
 function checkAndGenerateImage($text, $filePath)
