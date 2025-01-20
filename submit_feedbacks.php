@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 $movieId = $_POST['movie_id'] ?? null;
-$type = $_POST['type'] ?? null; // نوع عملیات: comment یا rate
+$type = $_POST['type'] ?? null; 
 
 if (!$type) {
     echo json_encode(['success' => false, 'message' => 'اطلاعات ناقص است.']);
@@ -100,3 +100,29 @@ if ($type === 'reply') {
         }
     }
 }
+
+
+if ($type === 'mark') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['movie_id'])) {
+        $userId = $_SESSION['user_id'];
+        $movieId = $_POST['movie_id'];
+    
+        $query = "CALL ToggleMark(?, ?)";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param("ii", $userId, $movieId);
+    
+        try {
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $status = $result->fetch_assoc()['status'];
+            if ($status === 'added') {
+                echo json_encode(['success' => true, 'message' => 'نشان شد!']);
+            } else {
+                echo json_encode(['success' => true, 'message' => 'از نشان‌ها حذف شد!']);
+            }
+        } catch (Exception $e) {
+            echo json_encode(['success' => false, 'message' => 'خطایی رخ داده است.']);
+        }
+    }    
+}
+

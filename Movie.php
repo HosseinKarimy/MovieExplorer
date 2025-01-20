@@ -4,8 +4,9 @@ session_start();
 require 'database.php';
 require 'helper.php';
 
-// Fetch movie details
+
 $movieId = $_GET['id']; // Get movie ID from URL
+$userId = $_SESSION['user_id'] ?? null;
 $movieDetails = getMovieDetails($db, $movieId);
 $genres = getMovieGenres($db, $movieId);
 $posters = getMoviePosters($db, $movieId);
@@ -35,11 +36,15 @@ $media = fetchMediaFromDb($db, 'movieid', $movieId);
         <section class="details">
             <div class="details-information">
                 <h2><?php echo htmlspecialchars($movieDetails['title']); ?></h2>
-                <div class="follow-button">
-                    <button id="followToggle" class="follow-icon">
-                        <span>⭐</span> نشان کردن
-                    </button>
-                </div>
+                <?php if ($islogin): ?>
+                    <div class="follow-button">
+                        <button id="followToggle" class="follow-icon" onclick="submitMark(<?php echo htmlspecialchars($movieId); ?>)">
+                            <span>⭐</span>
+                            <?php echo isMarked($db, $movieId, $userId) ? "نشان شده" : "نشان کردن"; ?>
+                        </button>
+                    </div>
+                <?php endif; ?>
+
 
                 <p><strong>ژانر:</strong> <?php echo htmlspecialchars(implode(', ', $genres)); ?></p>
                 <p><strong>تاریخ انتشار:</strong> <?php echo htmlspecialchars($movieDetails['release_date']); ?></p>
@@ -114,7 +119,7 @@ $media = fetchMediaFromDb($db, 'movieid', $movieId);
             displayComments($db, $movieId);
             ?>
         </section>
-        
+
     </main>
 
     <script src="/assets/js/movie.js"></script>
@@ -122,3 +127,33 @@ $media = fetchMediaFromDb($db, 'movieid', $movieId);
 </body>
 
 </html>
+
+<?php
+function isMarked($db, $movieId, $userId)
+{
+    $query = "
+        SELECT COUNT(*)
+        FROM 
+        marks m
+        WHERE 
+        m.UserId = ? AND m.MovieId = ?
+    ";
+
+    $stmt = $db->prepare($query);
+    if (!$stmt) {
+        throw new Exception("Failed to prepare statement: " . $db->error);
+    }
+
+    $stmt->bind_param('ii', $userId, $movieId);
+    if (!$stmt->execute()) {
+        throw new Exception("Failed to execute statement: " . $stmt->error);
+    }
+
+    $result = $stmt->get_result();
+    $row = $result->fetch_row();
+    $count = $row[0];
+
+    return $count == 1;
+}
+
+?>
