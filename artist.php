@@ -131,4 +131,28 @@ function isFollowed($db, $artistId, $userId)
     return $count == 1;
 }
 
+
+
+
+
+function fetchArtistByIdFromDb($db, $artistId)
+{
+    $query = "SELECT 
+     *
+    FROM
+     artist
+    WHERE id = $artistId
+    ";
+
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_assoc();
+}
+
+
+
 ?>

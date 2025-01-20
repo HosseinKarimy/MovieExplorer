@@ -10,8 +10,8 @@
     $islogin = isset($_SESSION['user_id']);
     if ($islogin) {
       // If the user is logged in, show the username and user icon
-      echo '<span class="username">' . $_SESSION['username'] . '</span> 
-    <img src="/PHP/' . $_SESSION['profile_image'] .  '" alt="User Icon" class="user-icon">';
+      echo '<a href="/user.php" class="username">' . $_SESSION['username'] . '</a> 
+    <img src="/' . $_SESSION['profile_image'] .  '" alt="User Icon" class="user-icon">';
     } else {
       // If the user is not logged in, show the signup link
       echo '<a href="/StaticPages/signup.html">ثبت‌نام</a>';
