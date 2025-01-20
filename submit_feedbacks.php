@@ -126,3 +126,28 @@ if ($type === 'mark') {
     }    
 }
 
+if ($type === 'follow') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artist_id'])) {
+        $userId = $_SESSION['user_id'];
+        $artistid = $_POST['artist_id'];
+    
+        $query = "CALL ToggleFollow(?, ?)";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param("ii", $userId, $artistid);
+    
+        try {
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $status = $result->fetch_assoc()['status'];
+            if ($status === 'added') {
+                echo json_encode(['success' => true, 'message' => 'دنبال شد!']);
+            } else {
+                echo json_encode(['success' => true, 'message' => 'از دنبال شده ها حذف شد!']);
+            }
+        } catch (Exception $e) {
+            echo json_encode(['success' => false, 'message' => 'خطایی رخ داده است.']);
+        }
+    }    
+}
+
+

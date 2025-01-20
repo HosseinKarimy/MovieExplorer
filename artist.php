@@ -1,9 +1,11 @@
 <?php 
+session_start();
 require 'database.php';
 require 'helper.php';
 
 // Fetch movie details
 $artistId = $_GET['id']; // Get movie ID from URL
+$userId = $_SESSION['user_id'] ?? null;
 $media = fetchMediaFromDb($db , 'artistid' , $artistId);
 $artist = fetchArtistByIdFromDb($db , $artistId)
 ?>
@@ -30,11 +32,14 @@ $artist = fetchArtistByIdFromDb($db , $artistId)
     <section class="details">
         <div class="details-information">
             <h2><?php echo htmlspecialchars($artist['Name']); ?></h2>
-            <div class="follow-button">
-                <button id="followToggle" class="follow-icon">
-                    <span>⭐</span> دنبال کردن
-                </button>
-            </div>
+            <?php if ($islogin): ?>
+                    <div class="follow-button">
+                        <button id="followToggle" class="follow-icon" onclick="submitFollow(<?php echo htmlspecialchars($artistId); ?>)">
+                            <span>⭐</span>
+                            <?php echo isFollowed($db, $artistId, $userId) ? "دنبال شده" : "دنبال کردن"; ?>
+                        </button>
+                    </div>
+                <?php endif; ?>
             <p><strong>تاریخ تولد:</strong> <?php echo htmlspecialchars($artist['Birthdate']); ?></p>
             <p><strong>ملیت:</strong> <?php echo htmlspecialchars($artist['Nationality']); ?></p>
             <p><strong>بیوگرافی:</strong> <?php echo nl2br(htmlspecialchars($artist['Bio'])); ?></p>
@@ -59,6 +64,7 @@ $artist = fetchArtistByIdFromDb($db , $artistId)
 
     <script src="/assets/js/movie.js"></script>
     <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/artist.js"></script>
 </body>
 
 </html>
@@ -96,6 +102,33 @@ $query = "select mo.Id AS id,
     $stmt->close();
 
     return $movies;
+}
+
+function isFollowed($db, $artistId, $userId)
+{
+    $query = "
+        SELECT COUNT(*)
+        FROM 
+        follows m
+        WHERE 
+        m.UserId = ? AND m.ArtistId = ?
+    ";
+
+    $stmt = $db->prepare($query);
+    if (!$stmt) {
+        throw new Exception("Failed to prepare statement: " . $db->error);
+    }
+
+    $stmt->bind_param('ii', $userId, $artistId);
+    if (!$stmt->execute()) {
+        throw new Exception("Failed to execute statement: " . $stmt->error);
+    }
+
+    $result = $stmt->get_result();
+    $row = $result->fetch_row();
+    $count = $row[0];
+
+    return $count == 1;
 }
 
 ?>
