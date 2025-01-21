@@ -13,6 +13,7 @@ $posters = getMoviePosters($db, $movieId);
 $artist = fetchArtistsOfMovieFromDb($db, 'name', $movieId);
 $media = fetchMediaFromDb($db, 'movieid', $movieId);
 $viewCount = updateViewCountAndIncreaseIt($db, $movieId); 
+$movieRate = getMovieRateFromDb($db, $movieId);
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +37,8 @@ $viewCount = updateViewCountAndIncreaseIt($db, $movieId);
         <!-- Movie Details Section -->
         <section class="details">
             <div class="details-information">
-                <h5>view count:<?php echo htmlspecialchars($viewCount ); ?></h5>
+            <h5>تعداد بازدید:<?php echo htmlspecialchars($viewCount ); ?></h5>
+            <h5>امتیاز فیلم از 10 :<?php echo htmlspecialchars($movieRate ?? 'N/A'); ?></h5>
                 <h2><?php echo htmlspecialchars($movieDetails['title']); ?></h2>
                 <?php if ($islogin): ?>
                     <div class="follow-button">
@@ -386,6 +388,21 @@ function updateViewCountAndIncreaseIt($db, $movieId) {
     $stmt->close();
 
     return $row['viewCount'];
+}
+
+function getMovieRateFromDb($db, $movieId) {
+    $Query = "SELECT AVG(Rate) AS rate FROM 
+    rates r
+    WHERE r.MovieId = ?";
+
+    $stmt = $db->prepare($Query);
+    $stmt->bind_param('i', $movieId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+
+    return $row['rate'];
 }
 
 ?>
