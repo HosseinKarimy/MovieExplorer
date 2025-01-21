@@ -49,7 +49,11 @@ function saveComment($db, $userId, $movieId, $comment)
 
 function saveRating($db, $userId, $movieId, $rating)
 {
-    $query = "INSERT INTO rates (UserId, MovieId, Rate) VALUES (?, ?, ?)";
+    $query = "
+        INSERT INTO rates (UserId, MovieId, Rate) 
+        VALUES (?, ?, ?)
+        ON DUPLICATE KEY UPDATE Rate = VALUES(Rate)";
+        
     $stmt = $db->prepare($query);
     $stmt->bind_param("iii", $userId, $movieId, $rating);
     $result = $stmt->execute();
