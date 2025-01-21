@@ -402,7 +402,8 @@ function getMovieRateFromDb($db, $movieId) {
     $row = $result->fetch_assoc();
     $stmt->close();
 
-    return $row['rate'];
+    // Format the rate to 1 decimal point
+    return $row['rate'] !== null ? number_format($row['rate'], 1) : null;
 }
 
 ?>
