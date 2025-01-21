@@ -1,20 +1,15 @@
 @import url('item-card-list.css');
 
 .search-section {
+    position: relative;
     padding: 20px;
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.search-section h1 {
-    font-family: var(--font-family);
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    color: #333;
-}
-
 .search-box {
+    position: relative; /* Ensures child elements are positioned relative to this */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,23 +32,32 @@
     transition: box-shadow 0.2s ease;
 }
 
-.search-box button {
-    background-color: var(--third-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
+.dropdown {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    position: absolute; /* Position relative to the parent container */
+    width: calc(80% - 2px); /* Matches the search bar width minus borders */
+    top: 100%; /* Positions it right below the search bar */
+    left: 10%; /* Aligns it with the search bar */
+    z-index: 1000; /* Ensures it appears above other elements */
+    border-radius: 0 0 8px 8px; /* Smooth corners for the dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.dropdown li {
+    padding: 10px;
     cursor: pointer;
-    font-family: var(--font-family);
-    font-size: 1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.search-box button:hover {
-    background-color: var(--forth-color);
-    transform: scale(1.05);
+.dropdown li:hover {
+    background: #f0f0f0;
 }
-
 
 .faq-container {  
     padding: 20px;

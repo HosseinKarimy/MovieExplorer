@@ -1,3 +1,41 @@
+
+function search(query) {
+    const dropdown = document.getElementById("autocomplete-results");
+
+    // Clear dropdown if query is empty
+    if (query.trim() === "") {
+        dropdown.innerHTML = "";
+        return;
+    }
+
+    // Send request to the backend
+    fetch("search.php?q=" + encodeURIComponent(query))
+        .then((response) => response.json())
+        .then((data) => {
+            // Clear previous results
+            dropdown.innerHTML = "";
+
+            // Append new results
+            if (data.length > 0) {
+                data.forEach((item) => {
+                    const li = document.createElement("li");
+                    li.textContent = item.name;
+                    li.addEventListener("click", () => {
+                        alert(`Selected: ${item.name}`);
+                    });
+                    dropdown.appendChild(li);
+                });
+            } else {
+                dropdown.innerHTML = "<li>No results found</li>";
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+}
+
+
+
 // انتخاب تمام سوال‌ها
 const faqQuestions = document.querySelectorAll(".faq-question");
 

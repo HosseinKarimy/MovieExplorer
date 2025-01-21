@@ -20,12 +20,19 @@ require 'database.php';
  
     <!-- Main Content -->
     <main>
+
+        //TODO - search movie or artist
         <!-- Search Section -->
         <section class="search-section">
             <h1>پلتفرم جامع جستجوی فیلم</h1>
             <div class="search-box">
-                <input type="text" placeholder="جستجو" class="search-bar">
-                <button type="submit">جستجو</button>
+                <input
+                    type="text"
+                    placeholder="جستجو"
+                    class="search-bar"
+                    id="search-bar"
+                    oninput="search(this.value)">
+                <ul id="autocomplete-results" class="dropdown"></ul>
             </div>
         </section>
 
