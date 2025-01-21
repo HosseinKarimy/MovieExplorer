@@ -14,6 +14,7 @@ $artist = fetchArtistsOfMovieFromDb($db, 'name', $movieId);
 $media = fetchMediaFromDb($db, 'movieid', $movieId);
 $viewCount = updateViewCountAndIncreaseIt($db, $movieId); 
 $movieRate = getMovieRateFromDb($db, $movieId);
+if(isset($userId))
 $userRate = getRateByUser($db, $movieId,$userId);
 ?>
 
