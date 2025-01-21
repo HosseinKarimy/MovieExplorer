@@ -37,14 +37,14 @@ else
             <!-- related actors Section -->
             <?php
             $artist = fetchFollowedArtistsFromDb($db , $userId);
-            echo CreateListOfArtistCard($artist, 'بازیگران مرتبط');
+            echo CreateListOfArtistCard($artist, 'بازیگران دنبال شده');
             ?>
 
             <!-- Related Movies Section -->
             <?php
             $movies = fetchMarkedMoviesFromDb($db , $userId);
             // $movies = fetchRelatedMovies($db);
-            echo CreateListOfMovieCard($movies, 'فیلم های مرتبط');
+            echo CreateListOfMovieCard($movies, 'فیلم های نشان شده');
             ?>
         </section>
 
@@ -129,5 +129,36 @@ function fetchFollowedArtistsFromDb($db , $userId)
 
     return $movies;
 }
+
+// Helper method to create a single Artist card
+function CreateArtistCard($name, $id, $image)
+{
+    return '<div class="item-card">
+                <a href="' . htmlspecialchars('artist.php?id=' . $id) . '" class="item-card-link">
+                    <img src="' . htmlspecialchars('/' . ltrim($image, '/')) . '" alt="' . htmlspecialchars($name) . '">
+                    <p class="actor-name">' . htmlspecialchars($name) . '</p>
+                </a>
+            </div>';
+}
+
+// Helper method to create the list of Artist cards
+function CreateListOfArtistCard($Artists, $header)
+{
+    $artistCardsHtml = '';
+
+    // Loop through each artist and generate a artist card
+    foreach ($Artists as $artist) {
+        $artistCardsHtml .= CreateArtistCard($artist['name'], $artist['id'], $artist['image']);
+    }
+
+    // Return the full section with movie cards
+    return '<section class="item-cards-section">
+                <h2>' . htmlspecialchars($header) . '</h2>
+                <div class="item-card-list">
+                    ' . $artistCardsHtml . '
+                </div>
+            </section>';
+}
+
 
 ?>
