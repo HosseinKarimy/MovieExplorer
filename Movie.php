@@ -14,6 +14,7 @@ $artist = fetchArtistsOfMovieFromDb($db, 'name', $movieId);
 $media = fetchMediaFromDb($db, 'movieid', $movieId);
 $viewCount = updateViewCountAndIncreaseIt($db, $movieId); 
 $movieRate = getMovieRateFromDb($db, $movieId);
+$userRate = getRateByUser($db, $movieId,$userId);
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +107,7 @@ $movieRate = getMovieRateFromDb($db, $movieId);
                     <form class="review-form" onsubmit="submitRate(<?= $movieId ?>); return false;">
                         <div class="form-group">
                             <label for="rating">امتیاز:</label>
-                            <input type="number" id="rating" name="rating" min="1" max="10" placeholder="امتیاز (1 تا 10)" required>
+                            <input type="number" id="rating" name="rating" min="1" max="10" placeholder="امتیاز (1 تا 10)" <?php if(isset($userRate)) echo 'value ='.$userRate ?> required>
                         </div>
                         <button type="submit">ثبت امتیاز</button>
                     </form>
@@ -404,6 +405,23 @@ function getMovieRateFromDb($db, $movieId) {
 
     // Format the rate to 1 decimal point
     return $row['rate'] !== null ? number_format($row['rate'], 1) : null;
+}
+
+
+function getRateByUser($db, $movieId , $userId)
+{
+    $Query = "SELECT rate FROM 
+    rates r
+    WHERE r.MovieId = ? AND r.UserId = ?";
+
+    $stmt = $db->prepare($Query);
+    $stmt->bind_param('ii', $movieId , $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+
+    return $row['rate'];
 }
 
 ?>
