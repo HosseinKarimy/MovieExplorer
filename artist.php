@@ -46,7 +46,7 @@ $artist = fetchArtistByIdFromDb($db , $artistId)
             <p><strong>جزئیات:</strong> <?php echo htmlspecialchars($artist['Details']); ?></p>
         </div>
         <div class="details-image">
-            <img src="assets/images/<?php echo htmlspecialchars($artist['Id']); ?>.jpg" alt="<?php echo htmlspecialchars($artist['Name']); ?> Image">
+            <img src="<?php echo htmlspecialchars($artist['URL']); ?>" alt="<?php echo htmlspecialchars($artist['Name']); ?> Image">
         </div>
     </section>
 
@@ -131,17 +131,14 @@ function isFollowed($db, $artistId, $userId)
     return $count == 1;
 }
 
-
-
-
-
 function fetchArtistByIdFromDb($db, $artistId)
 {
     $query = "SELECT 
      *
     FROM
-     artist
-    WHERE id = $artistId
+     artist a
+     join media m on m.ArtistId = a.id
+    WHERE a.id = $artistId
     ";
 
     $stmt = $db->prepare($query);
