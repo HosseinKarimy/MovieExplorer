@@ -10,7 +10,7 @@ $userId = $_SESSION['user_id'] ?? null;
 $movieDetails = getMovieDetails($db, $movieId);
 $genres = getMovieGenres($db, $movieId);
 $posters = getMoviePosters($db, $movieId);
-$artist = fetchArtistsFromDb($db, 'name', $movieId);
+$artist = fetchArtistsOfMovieFromDb($db, 'name', $movieId);
 $media = fetchMediaFromDb($db, 'movieid', $movieId);
 ?>
 
@@ -71,7 +71,7 @@ $media = fetchMediaFromDb($db, 'movieid', $movieId);
         <section class="item-cards-section">
             <!-- related actors Section -->
             <?php
-            echo CreateListOfArtistCard($artist, 'بازیگران مرتبط');
+            echo CreateListOfArtistCardWithRoles($artist, 'بازیگران مرتبط');
             ?>
 
             <!-- Related Movies Section -->
@@ -158,7 +158,7 @@ function isMarked($db, $movieId, $userId)
 
 
 // Helper method to create a single Artist card
-function CreateArtistCard($name, $role, $id, $image)
+function CreateArtistCardWithRole($name, $role, $id, $image)
 {
     return '<div class="item-card">
                 <a href="' . htmlspecialchars('artist.php?id=' . $id) . '" class="item-card-link">
@@ -170,13 +170,13 @@ function CreateArtistCard($name, $role, $id, $image)
 }
 
 // Helper method to create the list of Artist cards
-function CreateListOfArtistCard($Artists, $header)
+function CreateListOfArtistCardWithRoles($Artists, $header)
 {
     $artistCardsHtml = '';
 
     // Loop through each artist and generate a artist card
     foreach ($Artists as $artist) {
-        $artistCardsHtml .= CreateArtistCard($artist['name'], $artist['role'], $artist['id'], $artist['image']);
+        $artistCardsHtml .= CreateArtistCardWithRole($artist['name'], $artist['role'], $artist['id'], $artist['image']);
     }
 
     // Return the full section with movie cards
@@ -188,7 +188,7 @@ function CreateListOfArtistCard($Artists, $header)
             </section>';
 }
 
-function fetchArtistsFromDb($db, $orderBy = 'name', $movieId)
+function fetchArtistsOfMovieFromDb($db, $orderBy = 'name', $movieId)
 {
     $query = "SELECT 
      ar.Id AS id,
