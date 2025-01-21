@@ -12,6 +12,7 @@ $genres = getMovieGenres($db, $movieId);
 $posters = getMoviePosters($db, $movieId);
 $artist = fetchArtistsOfMovieFromDb($db, 'name', $movieId);
 $media = fetchMediaFromDb($db, 'movieid', $movieId);
+$viewCount = updateViewCountAndIncreaseIt($db, $movieId); 
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +36,7 @@ $media = fetchMediaFromDb($db, 'movieid', $movieId);
         <!-- Movie Details Section -->
         <section class="details">
             <div class="details-information">
+                <h5>view count:<?php echo htmlspecialchars($viewCount ); ?></h5>
                 <h2><?php echo htmlspecialchars($movieDetails['title']); ?></h2>
                 <?php if ($islogin): ?>
                     <div class="follow-button">
@@ -368,5 +370,22 @@ function displayComments($db, $movieId, $parentId = null)
     }
 }
 
+function updateViewCountAndIncreaseIt($db, $movieId) {
+    $updateQuery = "UPDATE movies SET viewCount = viewCount + 1 WHERE id = ?";
+    $stmt = $db->prepare($updateQuery);
+    $stmt->bind_param('i', $movieId);
+    $stmt->execute();
+    $stmt->close();
+
+    $selectQuery = "SELECT viewCount FROM movies WHERE id = ?";
+    $stmt = $db->prepare($selectQuery);
+    $stmt->bind_param('i', $movieId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+
+    return $row['viewCount'];
+}
 
 ?>
