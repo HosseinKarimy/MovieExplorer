@@ -21,7 +21,8 @@ function search(query) {
                     const li = document.createElement("li");
                     li.textContent = item.name;
                     li.addEventListener("click", () => {
-                        alert(`Selected: ${item.name}`);
+                        window.location.href = "/movie.php?id=" + item.id;
+                        exit;
                     });
                     dropdown.appendChild(li);
                 });
