@@ -304,6 +304,12 @@ function getMoviePosters($db, $movieId)
     $posters = [];
     while ($row = $result->fetch_assoc()) {
         $posters[] = $row['URL'];
+        $filePath = $row['URL'];
+        // استخراج قسمت آخر URL
+        $text = basename($filePath);
+        // بررسی وجود فایل و تولید تصویر در صورت نیاز
+        checkAndGenerateImage($text, $filePath);
+    
     }
     return $posters;
 }
