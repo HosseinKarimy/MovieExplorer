@@ -2,7 +2,7 @@
 require 'helper.php';
 require 'database.php';
 $islogin = isset($_SESSION['user_id']);
-$userId = $_SESSION['user_id'];
+$userId = $_SESSION['user_id'] ?? null;
 ?>
 <!DOCTYPE html>
 <html lang="fa">
