@@ -1,6 +1,8 @@
 <?php session_start();
 require 'helper.php';
 require 'database.php';
+$islogin = isset($_SESSION['user_id']);
+$userId = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
 <html lang="fa">
@@ -17,11 +19,9 @@ require 'database.php';
     <!-- navbar -->
     <?php require 'navbar.php'
     ?>
- 
+
     <!-- Main Content -->
     <main>
-
-        //TODO - search movie or artist
         <!-- Search Section -->
         <section class="search-section">
             <h1>پلتفرم جامع جستجوی فیلم</h1>
@@ -37,17 +37,22 @@ require 'database.php';
         </section>
 
         <!-- Recommended Movies Section -->
-
+        <?php
+        if ($islogin) {
+            $movies = fetchRecommendedMovies($db, $userId);
+            echo CreateListOfMovieCard($movies, 'پیشنهادات');
+        }
+        ?>
         <!-- Newest Movies Section -->
-        <?php         
+        <?php
         $movies = fetchMoviesFromDb($db);
-        echo CreateListOfMovieCard($movies,'جدیدترین‌ها');
+        echo CreateListOfMovieCard($movies, 'جدیدترین‌ها');
         ?>
 
         <!-- Most Viewed Movies Section -->
-        <?php         
-        $movies = fetchMoviesFromDb($db , 'ViewCount ');
-        echo CreateListOfMovieCard($movies,'پربازدیدترین ها');
+        <?php
+        $movies = fetchMoviesFromDb($db, 'ViewCount');
+        echo CreateListOfMovieCard($movies, 'پربازدیدترین ها');
         ?>
 
         <section class="faq-container">
@@ -77,3 +82,35 @@ require 'database.php';
 </body>
 
 </html>
+
+<?php
+function fetchRecommendedMovies($db, $userid)
+{
+
+    $query = "select mo.id As id, mo.Name As title , me.URL as image ,mo.ViewCount FROM 
+    movies mo JOIN genremovie gm on gm.MovieId = mo.id join usergenre ug on ug.GenreId = gm.GenreId JOIN media me on me.MovieId=mo.id
+    where ug.UserId = $userid
+    GROUP by mo.id
+    ORDER by mo.ViewCount DESC";
+
+
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $movies = [];
+    while ($row = $result->fetch_assoc()) {
+        $movies[] = $row;
+        $filePath = $row['image'];
+        // استخراج قسمت آخر URL
+        $text = basename($filePath);
+        // بررسی وجود فایل و تولید تصویر در صورت نیاز
+        checkAndGenerateImage($text, $filePath);
+    }
+
+    $stmt->close();
+
+    return $movies;
+}
+
+?>
