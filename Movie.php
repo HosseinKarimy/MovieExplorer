@@ -428,7 +428,7 @@ function getRateByUser($db, $movieId , $userId)
     $row = $result->fetch_assoc();
     $stmt->close();
 
-    return $row['rate'];
+    return $row ? $row['rate'] : null;
 }
 
 ?>
